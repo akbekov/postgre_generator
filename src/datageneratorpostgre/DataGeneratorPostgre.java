@@ -254,6 +254,7 @@ public class DataGeneratorPostgre {
             fields.append("id_plane, plane_no, model, year, id_airline");
             List<String> plane = new ArrayList<>();
             List<Integer> year = new ArrayList<>();
+            List<Integer> idAirline = database.select("airline", "id_airline", null, null, state);
             Scanner scan = new Scanner(new File("planes.txt"));
             while (scan.hasNext()) {
                 plane.add(scan.nextLine());
@@ -263,10 +264,8 @@ public class DataGeneratorPostgre {
             }
             for (int i = 0; i < generate; i++) {
                 StringBuilder values = new StringBuilder();
-                int airline = rand.nextInt(generate) + 1;   //  генерация id_airline и дальнейшая проверка. Если id_airline окажется больше генерируемого количества строк, уменьшаем его на один.
-                if (airline > generate) {
-                    airline = airline - 1;
-                }
+                int index = rand.nextInt(idAirline.size());
+                int airline = idAirline.get(index);
                 values.append(i + 1).append(",").append(rand.nextInt(5000))
                         .append(",'").append(plane.get(rand.nextInt(plane.size())))
                         .append("',").append(year.get(rand.nextInt(year.size())))
@@ -295,7 +294,7 @@ public class DataGeneratorPostgre {
                 StringBuilder values = new StringBuilder();
                 int indexAirline = rand.nextInt(idAirline.size());
                 int airline = idAirline.get(indexAirline);
-                
+
                 int depAirport = idAirport.get(rand.nextInt(idAirport.size()));
                 int arrAirport = idAirport.get(rand.nextInt(idAirport.size()));
                 //  проверка: аэропорт вылета не может являться аэропортом прилета. В таком случае, генерируем новый id аэропорта
@@ -335,10 +334,10 @@ public class DataGeneratorPostgre {
                 StringBuilder values = new StringBuilder();
                 int index = rand.nextInt(idPlane.size());
                 int plane = idPlane.get(index);
-                idPlane.remove(index);
+//                idPlane.remove(index);
                 int index2 = rand.nextInt(idFlight.size());
                 int flight = idFlight.get(index2);
-                idFlight.remove(index2);
+//                idFlight.remove(index2);
                 values.append(i + 1)
                         .append(",").append(plane)
                         .append(",").append(flight);
@@ -386,7 +385,7 @@ public class DataGeneratorPostgre {
                 int plane = idPlane.get(index);
                 int index2 = rand.nextInt(idTariff.size());
                 int tariff = idTariff.get(index2);
-                idTariff.remove(index2);
+//                idTariff.remove(index2);
                 values.append(i + 1)
                         .append(",").append(plane)
                         .append(",").append(tariff)
@@ -412,7 +411,7 @@ public class DataGeneratorPostgre {
                 int passenger = idPassenger.get(index);
                 int index2 = rand.nextInt(idTicket.size());
                 int ticket = idTicket.get(index2);
-                idTicket.remove(index2);
+//                idTicket.remove(index2);
                 values.append(i + 1)
                         .append(",").append(passenger)
                         .append(",").append(ticket);
