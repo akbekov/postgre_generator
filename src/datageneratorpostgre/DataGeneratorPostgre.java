@@ -334,10 +334,10 @@ public class DataGeneratorPostgre {
                 StringBuilder values = new StringBuilder();
                 int index = rand.nextInt(idPlane.size());
                 int plane = idPlane.get(index);
-//                idPlane.remove(index);
+                idPlane.remove(index);  //  закомментировать чтобы разрешить повторение идентификаторов
                 int index2 = rand.nextInt(idFlight.size());
                 int flight = idFlight.get(index2);
-//                idFlight.remove(index2);
+                idFlight.remove(index2);  //  закомментировать чтобы разрешить повторение идентификаторов
                 values.append(i + 1)
                         .append(",").append(plane)
                         .append(",").append(flight);
@@ -385,7 +385,7 @@ public class DataGeneratorPostgre {
                 int plane = idPlane.get(index);
                 int index2 = rand.nextInt(idTariff.size());
                 int tariff = idTariff.get(index2);
-//                idTariff.remove(index2);
+                idTariff.remove(index2);    //  закомментировать чтобы разрешить повторение идентификаторов
                 values.append(i + 1)
                         .append(",").append(plane)
                         .append(",").append(tariff)
@@ -411,7 +411,7 @@ public class DataGeneratorPostgre {
                 int passenger = idPassenger.get(index);
                 int index2 = rand.nextInt(idTicket.size());
                 int ticket = idTicket.get(index2);
-//                idTicket.remove(index2);
+                idTicket.remove(index2);    //  закомментировать чтобы разрешить повторение идентификаторов
                 values.append(i + 1)
                         .append(",").append(passenger)
                         .append(",").append(ticket);
